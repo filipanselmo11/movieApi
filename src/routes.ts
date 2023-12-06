@@ -6,6 +6,7 @@ import {
 } from "fastify";
 import { CreateMovieController } from "./controllers/CreateMovieController";
 import { ListMovieController } from "./controllers/ListMovieController";
+import { DeleteMovieController } from "./controllers/DeleteMovieController";
 
 
 export async function routes(fastiy: FastifyInstance, options: FastifyPluginOptions){
@@ -15,5 +16,9 @@ export async function routes(fastiy: FastifyInstance, options: FastifyPluginOpti
 
     fastiy.get('/movies', async(request: FastifyRequest, reply:FastifyReply) => {
       return new ListMovieController().handle(request, reply);
+    });
+
+    fastiy.delete('/movie', async(request: FastifyRequest, reply: FastifyReply) => {
+      return new DeleteMovieController().handle(request, reply);
     });
 }
